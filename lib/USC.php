@@ -3,7 +3,7 @@
  * Class App
  */
 Class USC {
-    public static $app = [];
+    public static $app = array();
     protected static $start_time = 0;
 
     //call function in controller
@@ -13,11 +13,13 @@ Class USC {
         try {
             self::loadController();
         }catch(Exception $e) {
-            $title = '500 Internal Server Error';
             $errorMsg = $e->getMessage();
+            $errorCode = $e->getCode();
+            if (empty($errorCode)) {$errorCode = 500;}
+            $title = "{$errorCode} Internal Server Error";
 
             header("Content-type: text/html; charset=utf-8");
-            header($title, true, 500);
+            header($title, true, $errorCode);
 
             echo <<<eof
 <!DocType html>
@@ -43,12 +45,15 @@ eof;
     }       //--}}}
 
     //parse url to controller and action name
-    protected static function getControllerAndAction($url) {       //--{{{
+    protected static function getControllerAndAction($url, $config) {       //--{{{
         $arr = parse_url($url);
         $path = !empty($arr['path']) ? $arr['path'] : '/';
-        list(, $controller, $action) = explode('/', $path);
+
+        @list(, $controller, $action) = explode('/', $path);
         if (empty($controller)) {
-            $controller = 'site';
+            $controller = !empty($config['defaultController']) ? $config['defaultController'] : 'site';
+        }else if(preg_match('/\w+\.\w+/i', $controller)) { //not controller but some file not exist
+            throw new Exception("File {$controller} not exist.", 404);
         }
         if (empty($action)) {
             $action = 'index';
@@ -63,7 +68,7 @@ eof;
 
         //parse url to controller and action
         $requestUrl = $_SERVER['REQUEST_URI'];
-        $arr = self::getControllerAndAction($requestUrl);
+        $arr = self::getControllerAndAction($requestUrl, $config);
         $controller = $arr['controller'];
         $action = $arr['action'];
         $start_time = self::$start_time;
@@ -81,10 +86,10 @@ eof;
             if (method_exists($className, $funName)) {
                 $cls->$funName();
             }else {
-                throw new Exception("Function {$funName} not exist in class {$className}.");
+                throw new Exception("Function {$funName} not exist in class {$className}.", 500);
             }
         }else {
-            throw new Exception("Controller file {$controllerFile} not exist.");
+            throw new Exception("Controller file {$className}.php not exist.", 500);
         }
     }   //--}}}
 

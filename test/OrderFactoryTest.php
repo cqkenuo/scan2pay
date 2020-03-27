@@ -5,13 +5,13 @@ require_once __DIR__ . '/../lib/DataFactory.php';
 require_once __DIR__ . '/../lib/OrderFactory.php';
 
 
-$config = [
+$config = array(
     'maxOrderOneDay' => 1000,
-    'redis' => [
+    'redis' => array(
         'host' => 'redis-server',
         'port' => 6379,
-    ]
-];
+    )
+);
 
 try {
     $of = new OrderFactory($config);

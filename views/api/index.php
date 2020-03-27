@@ -11,35 +11,35 @@ if (empty(USC::$app['config']['wechatQr']) || empty(USC::$app['config']['alipayQ
 
 ?>
 <div class="pay">
-    <h1 class="text-center">付款金额：<strong><?=$viewData['order']['price']?></strong><small>元</small></h1>
+    <h1 class="text-center">付款金额：<strong><?php echo $viewData['order']['price'];?></strong><small>元</small></h1>
     <p class="text-center">
         扫码后<strong class="label-warning">务必</strong>先在备注里填订单编号：
-        <strong class="num label-warning"><?=$viewData['order']['index']?></strong>
+        <strong class="num label-warning"><?php echo $viewData['order']['index'];?></strong>
         <br><small>付款后请等待卖家发货或联系他</small>
     </p>
 
     <div class="pure-g">
         <?php if (!empty(USC::$app['config']['wechatQr'])) { ?>
-        <?=$offsetGrid?>
-        <div class="<?=$gridCls?>">
+        <?php echo $offsetGrid;?>
+        <div class="<?php echo $gridCls;?>">
             <div class="con wxcon text-center">
                 <img class="hd" src="/img/logo_wx.png" width="100">
                 <div class="bd">
                     <p>打开微信[扫一扫]</p>
-                    <img src="<?=USC::$app['config']['wechatQr']?>">
+                    <img src="<?php echo USC::$app['config']['wechatQr'];?>">
                 </div>
             </div>
         </div>
         <?php } ?>
 
         <?php if (!empty(USC::$app['config']['alipayQr'])) { ?>
-        <?=$offsetGrid?>
-        <div class="<?=$gridCls?>">
+        <?php echo $offsetGrid;?>
+        <div class="<?php echo $gridCls;?>">
             <div class="con alicon text-center">
                 <img class="hd" src="/img/logo_ali.png" width="100">
                 <div class="bd text-center">
                     <p>打开支付宝[扫一扫]</p>
-                    <img src="<?=USC::$app['config']['alipayQr']?>">
+                    <img src="<?php echo USC::$app['config']['alipayQr'];?>">
                 </div>
             </div>
         </div>

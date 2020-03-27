@@ -67,7 +67,7 @@ Class ApiController extends Controller {
         //parameters check
         $this->checkFormInput($price, $user_id);
 
-        $errorCls = [];
+        $errorCls = array();
         if (!empty($user_id) && !$this->isCellphoneOk($user_id)) {
             $errorCls['user_id'] = 'alert-danger';
         }else if (!empty($user_id) && $user_id != $user_id_confirm) {

@@ -62,7 +62,7 @@ Class DataFactory {
     }   //--}}}
 
     protected function getDataFromCacheFile($date, $index = -1) {       //--{{{
-        $data = [];
+        $data = array();
 
         try {
             $cacheFile = $this->getCacheFile($date);
@@ -140,7 +140,7 @@ Class DataFactory {
     //get all data from redis sorted sets and local cache file
     //@date: YYmmdd
     public function getAll($date) {     //--{{{
-        $data = [];
+        $data = array();
 
         try {
             $cacheKey = $this->getCacheKey4Redis($date);
@@ -170,7 +170,7 @@ Class DataFactory {
     //@date: YYmmdd
     //@index: int
     public function get($date, $index) {    //--{{{
-        $data = [];
+        $data = array();
 
         try {
             $cacheKey = $this->getCacheKey4Redis($date);

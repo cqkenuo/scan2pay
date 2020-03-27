@@ -4,19 +4,19 @@ date_default_timezone_set('Asia/Shanghai');
 require_once __DIR__ . '/../lib/DataFactory.php';
 
 
-$config = [
-    'redis' => [
+$config = array(
+    'redis' => array(
         'host' => 'redis-server',
         'port' => 6379,
-    ]
-];
+    )
+);
 
 try {
     $df = new DataFactory($config);
 
     $today = date('Ymd');
     $orderNumber = rand(1, 100);
-    $data = ['orderid' => '2020021901', 'username' => '测试test ' . $orderNumber];
+    $data = array('orderid' => '2020021901', 'username' => '测试test ' . $orderNumber);
     $df->save($today, $orderNumber, $data);
     echo "Data append success\n";
 
@@ -30,7 +30,7 @@ try {
     print_r($cacheData);
 
     $order_id = $orderNumber;
-    $newData = ['orderid' => '2020022101', 'username' => '测试test数据修改:' . $order_id];
+    $newData = array('orderid' => '2020022101', 'username' => '测试test数据修改:' . $order_id);
     $df->save($today, $order_id, $newData);
     echo "New data update done.\n";
 

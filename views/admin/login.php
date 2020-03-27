@@ -8,7 +8,7 @@ h2{margin-bottom:10px}
     <fieldset>
         <legend><h2>管理员登录</h2></legend>
 
-        <div id="error"><?=$viewData['errorMsg']?></div>
+        <div id="error"><?php echo $viewData['errorMsg'];?></div>
         <div class="pure-control-group">
             <label for="pwd">密码</label>
             <input id="pwd" type="password" name="pwd">

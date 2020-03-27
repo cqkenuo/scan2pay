@@ -20,7 +20,7 @@ Class Controller {
     }   //--}}}
 
     //render view
-    public function render($viewName, $viewData = [], $pageTitle = '') {   //--{{{
+    public function render($viewName, $viewData = array(), $pageTitle = '') {   //--{{{
         $layoutFile = __DIR__ . '/../views/layout/' . $this->layout . '.php';
 
         //include layout and view
@@ -71,7 +71,7 @@ Class Controller {
             $logDir = __DIR__ . '/../runtime/logs/';
             $logOk = @error_log("{$logTime}\t{$thisUrl}\ttime cost: {$timeCost} ms\n", 3, "{$logDir}debug.log");
             if (!$logOk) {
-                mkdir($logDir, 0700);
+                mkdir($logDir, 0700, true);
                 @error_log("{$logTime}\t{$thisUrl}\ttime cost: {$timeCost} ms\n", 3, "{$logDir}debug.log");
             }
         }

@@ -21,9 +21,9 @@ Class AdminController extends Controller {
 
         $pageTitle = "管理员登录";
         $viewName = 'login';
-        $params = [
+        $params = array(
             'errorMsg' => $errorMsg,
-        ];
+        );
         return $this->render($viewName, $params, $pageTitle);
     }
 

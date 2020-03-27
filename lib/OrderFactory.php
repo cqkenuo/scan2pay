@@ -5,11 +5,11 @@
 Class OrderFactory extends DataFactory {
     protected $orderLockKey = 'orderNumber';
     protected $maxOrderOneDay = 10000;
-    public $orderStatus = [
+    public $orderStatus = array(
         'new' => 'new',
         'paid' => 'paid',
         'refund' => 'refund',
-    ];
+    );
 
     /**
      * config: ['maxOrderOneDay' => 10000]
@@ -23,7 +23,7 @@ Class OrderFactory extends DataFactory {
     }   //--}}}
 
     //support get number from order data
-    public function getOrderNumber($order = []) {      //--{{{
+    public function getOrderNumber($order = array()) {      //--{{{
         $orderNumber = 0;
 
         if (empty($order)) {
@@ -56,7 +56,7 @@ Class OrderFactory extends DataFactory {
      * @order_id
      * @ext_arr: other attributes
      */
-    public function newOrder($price, $user_id = '', $order_id = '', $ext_arr = []) {     //--{{{
+    public function newOrder($price, $user_id = '', $order_id = '', $ext_arr = array()) {     //--{{{
         $number = $this->getOrderNumber();
         if ($number > $this->maxOrderOneDay) {
             throw new Exception("Oops, order number is grater than the max order number in one day: {$this->maxOrderOneDay}");

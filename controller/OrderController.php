@@ -25,16 +25,16 @@ Class OrderController extends Controller {
         $of = new OrderFactory($configs);
         $orders = $of->getAll($day);
 
-        $stats = [
+        $stats = array(
             'total' => 0,
             'total_paid' => 0,
             'total_refund' => 0,
             'amount' => 0,
             'amount_paid' => 0,
             'amount_refund' => 0,
-        ];
+        );
         if (!empty($orders)) {
-            $arrNums = [];
+            $arrNums = array();
             foreach ($orders as $item) {
                 $arrNums[] = $item['index'];
 
@@ -144,7 +144,7 @@ Class OrderController extends Controller {
 
         $files = scandir($dataDir, SCANDIR_SORT_DESCENDING);
         //group by month and year
-        $years = [];
+        $years = array();
         if (!empty($files)) {
             foreach ($files as $file) {
                 if (in_array($file, ['.', '..'])) {continue;}
@@ -156,11 +156,11 @@ Class OrderController extends Controller {
                     $month = $arr['month'];
 
                     if (empty($years[$year])) {
-                        $years[$year] = [];
+                        $years[$year] = array();
                     }
 
                     if (empty($years[$year][$month])) {
-                        $years[$year][$month] = [];
+                        $years[$year][$month] = array();
                     }
 
                     $years[$year][$month][] = $date;
@@ -176,7 +176,7 @@ Class OrderController extends Controller {
     }       //--}}}
 
     //request url via curl
-    protected function request($url, $postFields = [], $timeout = 10) {    //--{{{
+    protected function request($url, $postFields = array(), $timeout = 10) {    //--{{{
         $s = curl_init();
 
         curl_setopt($s, CURLOPT_URL, $url);
@@ -210,11 +210,11 @@ Class OrderController extends Controller {
             set_time_limit($timeout + 5);
         }
 
-        $postData = [
+        $postData = array(
             'order_id' => $order['order_id'],
             'status' => $order['status'],
             'update_time' => time(),
-        ];
+        );
         $this->request($notifyUrl, $postData, $timeout);
 
         if ($this->curlStatus != 200) {

@@ -1,12 +1,10 @@
-<h1 align="center">Scan2Pay</h1>
+# Scan2Pay
 
-<p align="center">
 Scan2Pay is a simple and fast payment gateway for wechat and alipay, only support qr code / image scan, written in php.
-</p>
 
-**Scan page snapshot:**
+Scan page snapshot:
 
-![Snapshot of scan page](https://github.com/usc202065/scan2pay/raw/master/snapshot/scan.png)
+![Snapshot of scan page](./snapshot/scan.png ''Scan2Pay snapshot of scan page'')
 
 
 ## Features
