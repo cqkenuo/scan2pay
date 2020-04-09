@@ -16,7 +16,7 @@ Class USC {
             $errorMsg = $e->getMessage();
             $errorCode = $e->getCode();
             if (empty($errorCode)) {$errorCode = 500;}
-            $title = "{$errorCode} Internal Server Error";
+            $title = "HTTP/1.0 {$errorCode} Internal Server Error";
 
             header("Content-type: text/html; charset=utf-8");
             header($title, true, $errorCode);
