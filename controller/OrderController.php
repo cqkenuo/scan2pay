@@ -249,7 +249,8 @@ eof;
     protected function loginCheck() {   //--{{{
         session_start();
 
-        if(empty($_SESSION['login_time'])) {
+        $user_ip = $this->getUserIp();
+        if(empty($_SESSION['login_user']) || $_SESSION['login_user'] != $user_ip) {
             return $this->redirect('/admin/login/');
         }
     }   //--}}}
